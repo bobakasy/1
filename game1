@@ -1,0 +1,40 @@
+import random
+
+def generate_random_number():
+    return random.randint(1, 100)
+
+def get_user_guess():
+    while True:
+        try:
+            guess = int(input("Take a guess: "))
+            return guess
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
+def is_guess_correct(guess, number):
+    return guess == number
+
+def provide_feedback(guess, number):
+    if guess < number:
+        print("Too low!")
+    elif guess > number:
+        print("Too high!")
+
+def play_game():
+    number = generate_random_number()
+    attempts = 0
+    
+    print("Welcome to Guess the Number!")
+    print("I'm thinking of a number between 1 and 100.")
+    
+    while True:
+        guess = get_user_guess()
+        attempts += 1
+        
+        if is_guess_correct(guess, number):
+            print(f"Congratulations! You guessed the number in {attempts} attempts!")
+            break
+        
+        provide_feedback(guess, number)
+
+play_game()
